@@ -1,17 +1,18 @@
 class LtexLs < Formula
   desc "LSP for LanguageTool with support for Latex, Markdown and Others"
   homepage "https://valentjn.github.io/ltex/"
-  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/nightly.tar.gz"
-  sha256 "5b7ecc9996087af631ec080dc959348e6f04708619dc489c56dda1b18ef7da36"
+  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/15.2.0.tar.gz"
+  sha256 "59209730cb9cda57756a5d52c6af459f026ca72c63488dee3cfd232e4cfbf70a"
   license "MPL-2.0"
-  version "16.0.0-alpha.1.develop"
-  head "https://github.com/valentjn/ltex-ls.git", branch: "develop"
+  head "https://github.com/Jakob-Koschel/ltex-ls.git", branch: "gitcommit-support"
 
   depends_on "maven" => :build
   depends_on "python@3.11" => :build
   depends_on "openjdk"
 
   def install
+    version = '15.2.0' if build.head?
+
     inreplace "pom.xml", "python", "python3"
 
     ENV.prepend_path "PATH", Formula["python@3.11"].opt_libexec/"bin"
