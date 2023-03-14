@@ -1,21 +1,11 @@
 class LtexLs < Formula
   desc "LSP for LanguageTool with support for Latex, Markdown and Others"
   homepage "https://valentjn.github.io/ltex/"
-  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/15.2.0.tar.gz"
-  sha256 "59209730cb9cda57756a5d52c6af459f026ca72c63488dee3cfd232e4cfbf70a"
+  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/nightly.tar.gz"
+  sha256 "5b7ecc9996087af631ec080dc959348e6f04708619dc489c56dda1b18ef7da36"
   license "MPL-2.0"
+  version "16.0.0-alpha.1.develop"
   head "https://github.com/valentjn/ltex-ls.git", branch: "develop"
-
-  bottle do
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "906173952c376218818310b186e60bf8b7d3698f579afed9f967ef3ce0966f2f"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "73aa15eb9ccbae4dad9082b36278648f1f2495852c00d149570a810662337d60"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "33f4777677338470e3aa1f9ac0fc8a90f56d68ad0f677467a7092763de511d40"
-    sha256 cellar: :any_skip_relocation, ventura:        "157537c7e8d7833508332982cd95c691664fb5a0790810e2254c0212238984e8"
-    sha256 cellar: :any_skip_relocation, monterey:       "349287b0c61db2ece982339d2749283ada14c4016cae8688bb9393c9883f99dc"
-    sha256 cellar: :any_skip_relocation, big_sur:        "1984213d3c1814418eefbefc2cd313fa234ff1053cef6dfeeb14cdbb705419e4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5999bc49069005daea609d4d7a1298650095f802bc4fdf7efb5c3143c4c99838"
-  end
 
   depends_on "maven" => :build
   depends_on "python@3.11" => :build
