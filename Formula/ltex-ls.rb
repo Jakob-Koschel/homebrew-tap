@@ -13,7 +13,7 @@ class LtexLs < Formula
   def install
     version = '15.2.0' if build.head?
 
-    inreplace "pom.xml", "python", "python3"
+    # inreplace "pom.xml", "python", "python3"
 
     ENV.prepend_path "PATH", Formula["python@3.11"].opt_libexec/"bin"
     ENV["JAVA_HOME"] = Formula["openjdk"].opt_prefix
