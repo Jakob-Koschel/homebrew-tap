@@ -1,22 +1,24 @@
 class LtexLs < Formula
   desc "LSP for LanguageTool with support for Latex, Markdown and Others"
   homepage "https://valentjn.github.io/ltex/"
-  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/15.2.0.tar.gz"
+  url "https://github.com/valentjn/ltex-ls/archive/refs/tags/16.0.0.tar.gz"
   sha256 "59209730cb9cda57756a5d52c6af459f026ca72c63488dee3cfd232e4cfbf70a"
   license "MPL-2.0"
-  head "https://github.com/valentjn/ltex-ls.git", tag: "develop"
+  head "https://github.com/valentjn/ltex-ls.git", tag: "16.0.0"
 
   depends_on "maven" => :build
-  depends_on "python@3.11" => :build
+  depends_on "python@3.12" => :build
   depends_on "openjdk"
 
   def install
+    version = '16.0.0' if build.head?
+
+    # revert updating LanguageTool to 6.0
+    system "git", "revert", "-Xours", "-n", "6b72b5e9845ce11dad143fff05cdce76684edcc0"
+
     # Fix build with `openjdk` 20.
     # Reported upstream at https://github.com/valentjn/ltex-ls/issues/244.
     inreplace "pom.xml", "<arg>-Werror</arg>", ""
-
-    # revert updating LanguageTool to 6.0
-    system "git", "revert", "-n", "6b72b5e9845ce11dad143fff05cdce76684edcc0"
 
     ENV.prepend_path "PATH", Formula["python@3.11"].opt_libexec/"bin"
     ENV["JAVA_HOME"] = Formula["openjdk"].opt_prefix
